@@ -46,29 +46,3 @@ class Vehicles:
         return self.vehicles
 
 
-# # 定义道路参数
-# road_length = 600  # 道路长度（单位：米）
-# num_lanes = 2  # 车道数
-# lane_width = 3  # 车道宽度（单位：米）
-# vehicle_num_TV = 10  # 单个车道的车辆数
-# vehicle_num_SV = 5
-# min_vehicle_speed = 10  # 最大车速（单位：米/秒）
-# max_vehicle_speed = 20  # 最大车速（单位：米/秒）
-#
-# vehicle_TVs = Vehicles(vehicle_num_TV, road_length, num_lanes, lane_width, min_vehicle_speed
-#                     , max_vehicle_speed)
-# vehicle_SVs = Vehicles(vehicle_num_SV, road_length, num_lanes, lane_width, min_vehicle_speed
-#                     , max_vehicle_speed)
-#
-# vehicle_TVs.initialization_vehicle()
-# vehicle_SVs.initialization_vehicle()
-# print(vehicle_TVs.vehicles[0][0], vehicle_TVs.vehicles[0][1])
-# for idx, (position_x, position_y, speed) in enumerate(vehicle_TVs.vehicles, start=1):
-#     print(f"任务车辆 {idx}的坐标({position_x},{position_y}) 速度: {speed} 米/秒")
-#
-# print("-------------")
-# for idx, (position_x, position_y, speed) in enumerate(vehicle_SVs.vehicles, start=1):
-#     print(f"服务车辆 {idx}的坐标({position_x},{position_y}) 速度: {speed} 米/秒")
-#
-
-
