@@ -18,7 +18,6 @@ class ReplayBuffer:
 
     def add_cache(self, state_fc, state_conv, action, reward, next_state_fc, next_state_conv, done):
         self.buffer.append((state_fc, state_conv, action, reward, next_state_fc, next_state_conv, done))
-        # print(self.buffer)
 
     def sample_cache(self, batch_size):
         transitions = random.sample(self.buffer, batch_size)

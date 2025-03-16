@@ -179,7 +179,6 @@ class PPO:
         state_fc_normalized = self.min_max_scaling_tensor(state_fc)
         # 对state_conv进行归一化
         state_conv_normalized = self.min_max_scaling_tensor(state_conv)
-        # print(state_conv_normalized.shape)
         probs = self.actor(state_fc_normalized, state_conv_normalized)
 
         # 你可以根据需要更改用于替换的值

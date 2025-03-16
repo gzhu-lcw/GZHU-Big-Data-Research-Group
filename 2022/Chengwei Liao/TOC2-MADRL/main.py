@@ -101,9 +101,6 @@ def train_off_policy_agent(env, agents_DQN, replay_buffers_DQN, num_episodes,
         hitRatio = hitNum / localComputeNum
         successRatio = successNum / (num_T * env.vehicle_num)
         print("第{}轮训练平均奖励 ave={}".format(episode + 1, ave_episode_return))
-        # print("平均时延={}".format(ave_time))
-        # print("命中率={}".format(hitRatio))
-        # print("成功率={}".format(successRatio))
         return_list.append(ave_episode_return)
         # 写入excel表
         sheet_toc['A{}'.format(episode + 2)] = episode + 1

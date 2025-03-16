@@ -5,14 +5,7 @@ import torch.nn.init as init
 import torch.nn.functional as F
 import env.env_main as env_main
 
-from env.env_main import VecEnv
 
-"""10- 128  1-16      128 + (tv_num - 10) * 16 ---->  lstm
-20 - 288
-22 - 320
-24 - 352
-30 - 448
-"""
 TV_num = env_main.vehicle_num_TV * env_main.num_lanes
 input_size = 128 + (TV_num - 10) * 16
 
@@ -65,7 +58,6 @@ class PolicyNet(nn.Module):
 
         # LSTM 层处理
         x_conv = x_conv.unsqueeze(1)  # 增加时间步维度
-        # print(x_conv.size())
         lstm_out, hidden = self.lstm(x_conv, hidden)
         x_conv = lstm_out[:, -1, :]  # 取最后一个时间步的输出
         x_conv = F.relu(self.fc1(x_conv))
@@ -207,7 +199,6 @@ class SAC:
         # 使用概率分布获取动作
         action_dist = torch.distributions.Categorical(action_probs)
         actions = action_dist.sample()
-        # print(actions.tolist())
         return actions.tolist()
 
     def calc_target(self, rewards, next_states_fc, next_states_conv, dones):

@@ -122,7 +122,6 @@ class VecCachedEnv:
         # 构建状态空间s_o
         # 生成任务内容
         # [[content_id, content_size, content_probability, content_type],[],...]
-        # self.content_messages = self.task.content_message(epsilon, content_num, content_types)
         # 选取一个任务内容[content_id, content_size, content_probability]
         content_message = self.task.select_content(self.content_messages)
         self.task_messages = self.task.task_generate(content_message[0], content_message[1],

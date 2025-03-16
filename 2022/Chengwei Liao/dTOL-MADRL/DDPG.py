@@ -1,10 +1,6 @@
-import random
 import numpy as np
 import torch
-from torch import nn
 import torch.nn.functional as F
-import matplotlib.pyplot as plt
-import rl_utils
 
 
 class PolicyNet(torch.nn.Module):

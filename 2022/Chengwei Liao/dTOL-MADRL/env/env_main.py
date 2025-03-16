@@ -1,6 +1,5 @@
 import random
 import math
-import copy
 
 from env.vehicles import Vehicles
 from env.task import Task
@@ -175,8 +174,6 @@ class VecEnv:
         s2 = self.state_space2
         s2_ = s2  # 存储下一个状态
         self.pre_action.append(sum(action, []))  # 存储决策
-        # print(action)
-        reward1 = -0.5
         # 计算任务执行时间
         for action_idx in range(len(action)):
             subtask_cycle = s1[0][0] * action[action_idx][1]
@@ -185,15 +182,10 @@ class VecEnv:
                 time_cost, arrival_time, exe_time = self.task.cal_time('LOC', F_TV, subtask_cycle, subtask_size, 0.1,
                                                                        self.task_generate_times[0])
                 cost_time[action_idx] += time_cost  # 若卸载位置相同,则时间累加
-                if time_cost <= s1[0][2]:
-                    reward1 = 1
             elif action[action_idx][0] == 11:  # MEC计算
                 time_cost, arrival_time, exe_time = self.task.cal_time('MEC', F_MEC, subtask_cycle, subtask_size,
                                                                        data_rate_V2I, self.task_generate_times[0])
                 cost_time[action_idx] += time_cost
-                if time_cost <= s1[0][2]:
-                    reward1 = 1
-                # print(reward1)
             else:  # SV计算
                 sv_idx = action[action_idx][0] - 1
                 time_cost, arrival_time, exe_time = self.task.cal_time('V2V', F_SV, subtask_cycle, subtask_size,
@@ -233,7 +225,6 @@ class VecEnv:
         # 下一个时隙
         if self.TV_count >= vehicle_num_TV * num_lanes:
             s2_ = self.pre_action
-            # print(self.pre_action)
             self.TV_count = 0
             self.pre_action = []
             self.vehicle_TVs = self.vehicle_TV.vehicles_move(self.T)  # 车辆移动
@@ -250,7 +241,6 @@ class VecEnv:
                                       self.SVs_effective, vehicle_pow, data_rate_V2V,
                                       self.task_generate_times[0], self.task_messages)
         s1_[2] = csv  # csv信息 2
-        # print(csv)
         self.state_space1 = s1_  # 更新状态
         self.state_space2 = s2_
         s1_ = sum(s1_, [])
